@@ -27,44 +27,18 @@ const displayQuestion = async () => {
         }
 
         button.addEventListener("click", event => {resetQuestion()});
-        answerA.addEventListener("click", event => {
-            event.preventDefault();
-            if (event.target.textContent === arrAnswer[answerIndex].textContent) {
-                event.target.textContent = "Correct!";
-                button.addEventListener("click", event => {resetQuestion()});
-            } else {
-                event.target.textContent = "Wrong! Try again!";
-            }
+        arrAnswer.forEach ((e) => {
+            e.addEventListener("click", event => {
+                event.preventDefault();
+                if (event.target.textContent === arrAnswer[answerIndex].textContent) {
+                    event.target.textContent = "Correct!";
+                    button.addEventListener("click", event => {resetQuestion()});
+                } else {
+                    event.target.textContent = "Wrong! Try again!";
+                }
+            });
         });
-        answerB.addEventListener("click", function(event) {
-            event.preventDefault();
-            if (event.target.textContent === arrAnswer[answerIndex].textContent) {
-                event.target.textContent = "Correct!";
-                button.addEventListener("click", event => {resetQuestion()});
-            } else {
-                event.target.textContent = "Wrong! Try again!";
-            }
-
-        });
-        answerC.addEventListener("click", function(event) {
-            event.preventDefault();
-            if (event.target.textContent === arrAnswer[answerIndex].textContent) {
-                event.target.textContent = "Correct!";
-                button.addEventListener("click", event => {resetQuestion()});
-            } else {
-                event.target.textContent = "Wrong! Try again!";
-            }
-        });
-        answerD.addEventListener("click", function(event) {
-            event.preventDefault();
-            if (event.target.textContent === arrAnswer[answerIndex].textContent) {
-                event.target.textContent = "Correct!";
-                button.addEventListener("click", event => {resetQuestion()});
-            } else {
-                event.target.textContent = "Wrong! Try again!";
-            }
-        });
-
+        
     } catch(e) {
         console.log(e);
     }
