@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon - </title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<!-- css section ----------------------------------------------- -->
+<style>
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-sizing: border-box;
+    padding: 1rem;
+}
+.question {
+    display: flex;
+    flex-direction: column;
+}
+.question__button {
+    background-color: goldenrod;
+    border: none;
+    border-radius: 4px;
+}
+.answer {
+    display: flex;
+    flex-direction: column;
+}
+#answer__clicked {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#answer__clicked:hover {
+    border: 3px solid goldenrod;
+    border-radius: 5px;
+}
+</style>
+<body>
+    <!-- html section ------------------------------------------  -->
+    <section class="quetion">
+        <h1>Trivia Challenge</h1>
+        <button class="question__button" type="button">Question</button>
+        <div class="question__display">
+            <h1 class="category__text">Category</h1>
+            <h2 class="question__text">hello world</h2>
+
+        </div>
+    </section>
+    <section class="answer">
+        <div id="answer__clicked" class=".answer__text">hi hi</div>
+        <div id="answer__clicked">hi hi</div>
+        <div id="answer__clicked">hi hi</div>
+        <div id="answer__clicked">hi hi</div>
+    </section>
+    <!-- javascript section ---------------------------------------------- -->
+    <script>
+
+        const button = document.querySelector(".question__button");
+        const answer = document.querySelector(".answer");
+        const category = document.querySelector (".category.title")
+
+        function getRandomItem(array) {
+        const randomIndex = Math.floor(Math.random() * array.length);
+        return array[randomIndex];
+        }
+
+        button.addEventListener("click", function(e) {
+            e.preventDefault();
+
+// Question fetch
+            const displayQuestion = async () => {
+                try {
+                    const response = await axios.get("http://jservice.io/api/clues");
+                    // console.log(response.data[0].question);
+                    document.querySelector(".question__text").textContent = response.data[0].question;
+                } catch(e) {
+                    console.log(e);
+                }
+            };
+            displayQuestion();
+
+
+//Category title Fetch
+            const displayCategory = async () => {
+                try {
+                    const response = await axios.get("http://jservice.io/api/clues");
+                    // console.log(response.data[0].category.title);
+                    document.querySelector(".category__text").textContent = response.data[0].category.title;
+                } catch(e) {
+                    console.log(e);
+                }
+            };
+            displayCategory();
+            
+
+//Fetch answers on the buttons
+            const displayAnswerOption = async () => {
+                try {
+                    const response = await axios.get("http://jservice.io/api/clues");
+                    // console.log(response.data[0].category.title);
+                    document.querySelector(".answer__text").textContent = response.data.answer;
+                } catch(e) {
+                    console.log(e);
+                }
+            };
+            displayAnswerOption();
+
+
+        });
+
+
+        
+            
+        
+        answer.addEventListener("click", function(e) {
+            e.preventDefault();
+            console.log(e);
+        });
+        console.log(answer);
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

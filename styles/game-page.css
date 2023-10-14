@@ -1,0 +1,142 @@
+body {
+  font-family: "Dosis", sans-serif;
+  margin: 0%;
+}
+
+.header {
+  background-color: rgb(73, 3, 73);
+  color: white;
+  padding-left: 36px;
+  padding-right: 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 150px;
+}
+.header__logo {
+  font-size: 40px;
+  font-weight: 300;
+}
+.header__title {
+  font-size: 60px;
+  font-weight: 600;
+}
+.header__nav-bar {
+  font-size: 40px;
+  font-weight: 300;
+}
+.header__nav-link {
+  text-decoration: none;
+  color: white;
+}
+
+.footer {
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 36px;
+  padding-right: 36px;
+  background-color: rgb(73, 3, 73);
+  color: white;
+  height: 150px;
+}
+.footer__box-left {
+  flex-direction: column;
+}
+.footer__box-right {
+  flex-direction: column;
+}
+.footer__box-title {
+  font-weight: 600;
+}
+.footer__email {
+  text-decoration: none;
+  color: white;
+}
+.footer__box-list {
+  list-style: none;
+  padding: 0%;
+}
+
+.main {
+  background-image: url("../assets/trivia.jpg");
+  background-position: center;
+  background-size: cover;
+  padding-left: 36px;
+  padding-right: 36px;
+  height: 700px;
+  display: flex;
+  padding-top: 100px;
+  padding-bottom: 80px;
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.main__category {
+  font-weight: 600;
+}
+.main__container {
+  background-color: white;
+  padding-left: 20px;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  box-sizing: border-box;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  margin-top: 240px;
+  height: 400px;
+  width: 900px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5%;
+  box-shadow: 0rem 0.313rem 0.563rem 0.063rem rgba(0, 0, 0, 0.25);
+}
+.main__answer-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding-top: 15px;
+}
+.main__answer {
+  display: flex;
+  flex-direction: row;
+  font-weight: 600;
+  border: 2px solid;
+  padding: 10px 15px;
+  border-radius: 20%;
+  width: 30%;
+  justify-content: center;
+  color: white;
+}
+.main__answer-1 {
+  border-color: #39c1b7;
+  background-color: #39c1b7;
+}
+.main__answer-2 {
+  border-color: #fe9a0c;
+  background-color: #fe9a0c;
+}
+.main__answer-3 {
+  border-color: #fa7eff;
+  background-color: #fa7eff;
+  margin-top: 30px;
+}
+.main__answer-4 {
+  border-color: #f5391d;
+  background-color: #f5391d;
+  margin-top: 30px;
+}
+
+.question__button {
+  margin-left: 600px;
+  padding: 5px 15px;
+  border-radius: 30%;
+  background-color: #39c1b7;
+  color: white;
+  font-size: 25px;
+  margin-top: 20px;
+}/*# sourceMappingURL=game-page.css.map */
