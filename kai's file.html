@@ -5,53 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hackathon - Trivia Challenge</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 </head>
+
 <!-- css section ----------------------------------------------- -->
 <style>
+
 * {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     box-sizing: border-box;
     padding: 1rem;
 }
+
 .question {
     display: flex;
     flex-direction: column;
+
 }
+
 .question__button {
     background-color: goldenrod;
     border: none;
     border-radius: 4px;
 }
+
 .answer {
     display: flex;
     flex-direction: column;
 }
+
 #answer__clicked {
     display: flex;
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
 }
-#answer__clicked:hover {
+
+#answer__clicked-a:hover,  #answer__clicked-b:hover, #answer__clicked-c:hover,#answer__clicked-d:hover {
     border: 3px solid goldenrod;
     border-radius: 5px;
 }
+
+
 </style>
+
+
 <body>
-    <!-- html section ------------------------------------------  -->
+    <!-- html section --------------------------------------------------- -->
+
     <section class="quetion">
         <h1>Trivia Challenge</h1>
         <button class="question__button" type="button">Question</button>
+
         <div class="question__display">
             <h2 class="question__text">hello world</h2>
         </div>
     </section>
+
     <section class="answer">
         <div id="answer__clicked-a">hi hi</div>
         <div id="answer__clicked-b">hi hi</div>
         <div id="answer__clicked-c">hi hi</div>
         <div id="answer__clicked-d">hi hi</div>
+
     </section>
+
+
+
     <!-- javascript section ---------------------------------------------- -->
     <script>
         const button = document.querySelector(".question__button");
@@ -61,52 +81,73 @@
         const answerC = document.querySelector("#answer__clicked-c");
         const answerD = document.querySelector("#answer__clicked-d");
         const arrAnswer = [answerA, answerB, answerC, answerD];
-        button.addEventListener("click", function(e) {
-            e.preventDefault();
-            const displayQuestion = async () => {
-                try {
-                    const response = await axios.get("http://jservice.io/api/clues");
-                    let randomIndex = Math.floor(Math.random()*100);
-                    let answerIndex = Math.floor(Math.random()*4);
+        let response = null;
+
+
+        const displayQuestion = async () => {
+            try {
+                response = await axios.get("http://jservice.io/api/clues");
+                let randomIndex = Math.floor(Math.random()*100);
+                let answerIndex = Math.floor(Math.random()*4);
+                resetQuestion();
+                function resetQuestion () {
+                    randomIndex = Math.floor(Math.random()*100);
+                    answerIndex = Math.floor(Math.random()*4);
                     document.querySelector(".question__text").textContent = response.data[randomIndex].question;
-                    // answer section
                     arrAnswer[answerIndex].textContent = response.data[randomIndex].answer;
-                    console.log(arrAnswer[answerIndex].textContent);
                     for (let i = 0; i < 4; i++) {
-                        if (i !== answerIndex) {
-                            arrAnswer[i].textContent = response.data[Math.floor(Math.random()*100)].answer;
-                            console.log(arrAnswer[i]);
-                        }
-                        else {
-                            // do nothing
+                        if (i !== answerIndex) {   
+                            arrAnswer[i].textContent = response.data[Math.floor(Math.random()*100)].answer;               
                         }
                     }
-                    // answer section
-                    answer.addEventListener("click", function(e) {
-                    e.preventDefault();
-                    // console.log(response.data[randomIndex].answer);
-                    if (e.target.textContent === arrAnswer[answerIndex].textContent) {
-                        console.log("answere crrect!!");
-                    }
-                    e.target.textContent = response.data[0].answer;
-                    // console.log(response);
-                });
-                } catch(e) {
-                    console.log(e);
                 }
+
+                button.addEventListener("click", event => {resetQuestion()});
+                answerA.addEventListener("click", event => {
+                    event.preventDefault();
+                    if (event.target.textContent === arrAnswer[answerIndex].textContent) {
+                        event.target.textContent = "Correct!";
+                        button.addEventListener("click", event => {resetQuestion()});
+                    } else {
+                        event.target.textContent = "Wrong! Try again!";
+                    }
+                });
+                answerB.addEventListener("click", function(event) {
+                    event.preventDefault();
+                    if (event.target.textContent === arrAnswer[answerIndex].textContent) {
+                        event.target.textContent = "Correct!";
+                        button.addEventListener("click", event => {resetQuestion()});
+                    } else {
+                        event.target.textContent = "Wrong! Try again!";
+                    }
+
+                });
+                answerC.addEventListener("click", function(event) {
+                    event.preventDefault();
+                    if (event.target.textContent === arrAnswer[answerIndex].textContent) {
+                        event.target.textContent = "Correct!";
+                        button.addEventListener("click", event => {resetQuestion()});
+                    } else {
+                        event.target.textContent = "Wrong! Try again!";
+                    }
+                });
+                answerD.addEventListener("click", function(event) {
+                    event.preventDefault();
+                    if (event.target.textContent === arrAnswer[answerIndex].textContent) {
+                        event.target.textContent = "Correct!";
+                        button.addEventListener("click", event => {resetQuestion()});
+                    } else {
+                        event.target.textContent = "Wrong! Try again!";
+                    }
+                });
+
+            } catch(e) {
+                console.log(e);
             }
-            displayQuestion();
-        });
+        };
+
+        displayQuestion();
+
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
